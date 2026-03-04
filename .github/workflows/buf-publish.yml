@@ -1,0 +1,26 @@
+name: Publish to BSR
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+
+      - uses: bufbuild/buf-action@v1
+        with:
+          token: ${{ secrets.BUF_TOKEN }}
+          push: true
+          lint: false
+          format: false
+          breaking: false

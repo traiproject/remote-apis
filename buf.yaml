@@ -1,0 +1,6 @@
+version: v2
+modules:
+  - path: .
+    name: buf.build/trai/remote-apis
+deps:
+  - buf.build/googleapis/googleapis
